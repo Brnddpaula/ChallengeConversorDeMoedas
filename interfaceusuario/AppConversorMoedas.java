@@ -10,7 +10,8 @@ public class AppConversorMoedas {
 
     // Método para exibir o menu de opções para o usuário
     private static void mostrarMenu() {
-        System.out.println("Conversor de Moedas");
+        System.out.println("\n========== Conversor de Moedas ==========");
+        System.out.println("Escolha uma das opções abaixo:");
         System.out.println("1. USD para ARS");
         System.out.println("2. ARS para USD");
         System.out.println("3. USD para BOB");
@@ -22,7 +23,7 @@ public class AppConversorMoedas {
         System.out.println("9. USD para COP");
         System.out.println("10. COP para USD");
         System.out.println("0. Sair");
-        System.out.print("Selecione a opção desejada: ");
+        System.out.print("Informe a opção desejada: ");
     }
 
     // Método principal para executar o aplicativo
