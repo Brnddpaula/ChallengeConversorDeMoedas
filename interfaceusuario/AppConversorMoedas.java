@@ -3,6 +3,7 @@ package interfaceusuario;
 import conversordemoedas.Conversor;
 import exchangerateapi.ApiTaxasCambio;
 import com.google.gson.JsonObject;
+
 import java.util.Scanner;
 
 public class AppConversorMoedas {
@@ -10,12 +11,16 @@ public class AppConversorMoedas {
     // Método para exibir o menu de opções para o usuário
     private static void mostrarMenu() {
         System.out.println("Conversor de Moedas");
-        System.out.println("1. USD para EUR");
-        System.out.println("2. EUR para USD");
-        System.out.println("3. USD para GBP");
-        System.out.println("4. GBP para USD");
-        System.out.println("5. USD para JPY");
-        System.out.println("6. JPY para USD");
+        System.out.println("1. USD para ARS");
+        System.out.println("2. ARS para USD");
+        System.out.println("3. USD para BOB");
+        System.out.println("4. BOB para USD");
+        System.out.println("5. USD para BRL");
+        System.out.println("6. BRL para USD");
+        System.out.println("7. USD para CLP");
+        System.out.println("8. CLP para USD");
+        System.out.println("9. USD para COP");
+        System.out.println("10. COP para USD");
         System.out.println("0. Sair");
         System.out.print("Selecione a opção desejada: ");
     }
@@ -37,44 +42,58 @@ public class AppConversorMoedas {
                 }
                 System.out.print("Digite o valor a ser convertido: ");
                 double valor = scanner.nextDouble(); // Lê o valor a ser convertido
-                double resultado = 0;
+                double resultado;
 
-                //Converte conforme opcao do usuario
+                // Realiza a conversão com base na opção selecionada
                 switch (opcao) {
                     case 1:
-                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("EUR").getAsDouble());
-                        System.out.printf("%.2f USD é igual a %.2f EUR\n", valor, resultado);
+                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("ARS").getAsDouble());
+                        System.out.printf("%.2f USD é igual a %.2f ARS\n", valor, resultado);
                         break;
                     case 2:
-                        resultado = conversor.converter(valor, taxas.get("EUR").getAsDouble(), taxas.get("USD").getAsDouble());
-                        System.out.printf("%.2f EUR é igual a %.2f USD\n", valor, resultado);
+                        resultado = conversor.converter(valor, taxas.get("ARS").getAsDouble(), taxas.get("USD").getAsDouble());
+                        System.out.printf("%.2f ARS é igual a %.2f USD\n", valor, resultado);
                         break;
                     case 3:
-                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("GBP").getAsDouble());
-                        System.out.printf("%.2f USD é igual a %.2f GBP\n", valor, resultado);
+                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("BOB").getAsDouble());
+                        System.out.printf("%.2f USD é igual a %.2f BOB\n", valor, resultado);
                         break;
                     case 4:
-                        resultado = conversor.converter(valor, taxas.get("GBP").getAsDouble(), taxas.get("USD").getAsDouble());
-                        System.out.printf("%.2f GBP é igual a %.2f USD\n", valor, resultado);
+                        resultado = conversor.converter(valor, taxas.get("BOB").getAsDouble(), taxas.get("USD").getAsDouble());
+                        System.out.printf("%.2f BOB é igual a %.2f USD\n", valor, resultado);
                         break;
                     case 5:
-                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("JPY").getAsDouble());
-                        System.out.printf("%.2f USD é igual a %.2f JPY\n", valor, resultado);
+                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("BRL").getAsDouble());
+                        System.out.printf("%.2f USD é igual a %.2f BRL\n", valor, resultado);
                         break;
                     case 6:
-                        resultado = conversor.converter(valor, taxas.get("JPY").getAsDouble(), taxas.get("USD").getAsDouble());
-                        System.out.printf("%.2f JPY é igual a %.2f USD\n", valor, resultado);
+                        resultado = conversor.converter(valor, taxas.get("BRL").getAsDouble(), taxas.get("USD").getAsDouble());
+                        System.out.printf("%.2f BRL é igual a %.2f USD\n", valor, resultado);
+                        break;
+                    case 7:
+                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("CLP").getAsDouble());
+                        System.out.printf("%.2f USD é igual a %.2f CLP\n", valor, resultado);
+                        break;
+                    case 8:
+                        resultado = conversor.converter(valor, taxas.get("CLP").getAsDouble(), taxas.get("USD").getAsDouble());
+                        System.out.printf("%.2f CLP é igual a %.2f USD\n", valor, resultado);
+                        break;
+                    case 9:
+                        resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("COP").getAsDouble());
+                        System.out.printf("%.2f USD é igual a %.2f COP\n", valor, resultado);
+                        break;
+                    case 10:
+                        resultado = conversor.converter(valor, taxas.get("COP").getAsDouble(), taxas.get("USD").getAsDouble());
+                        System.out.printf("%.2f COP é igual a %.2f USD\n", valor, resultado);
                         break;
                     default:
                         System.out.println("Opção inválida.");
                 }
             }
-            scanner.close();
+            scanner.close(); // Fecha o scanner
         } catch (Exception e) {
             // Captura e exibe qualquer exceção que ocorra durante a obtenção das taxas de câmbio
             System.out.println("Erro ao obter as taxas de câmbio: " + e.getMessage());
         }
     }
 }
-
-
