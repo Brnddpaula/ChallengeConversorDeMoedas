@@ -1,14 +1,10 @@
 package interfaceusuario;
-
 import conversordemoedas.Conversor;
 import exchangerateapi.ApiTaxasCambio;
 import com.google.gson.JsonObject;
-
 import java.util.Scanner;
 
 public class AppConversorMoedas {
-
-    // Método para exibir o menu de opções para o usuário
     private static void mostrarMenu() {
         System.out.println("\n========== Conversor de Moedas ==========");
         System.out.println("Escolha uma das opções abaixo:");
@@ -25,27 +21,24 @@ public class AppConversorMoedas {
         System.out.println("0. Sair");
         System.out.print("Informe a opção desejada: ");
     }
-
-    // Método principal para executar o aplicativo
     public static void main(String[] args) {
-        ApiTaxasCambio apiClient = new ApiTaxasCambio(); // Instancia o cliente da API
-        Conversor conversor = new Conversor(); // Instancia o conversor de moedas
-        Scanner scanner = new Scanner(System.in); // Scanner para ler a entrada do usuário
+        ApiTaxasCambio apiClient = new ApiTaxasCambio();
+        Conversor conversor = new Conversor();
+        Scanner scanner = new Scanner(System.in);
 
         try {
-            JsonObject taxas = apiClient.obterTaxas(); // Obtém as taxas de câmbio da API
+            JsonObject taxas = apiClient.obterTaxas();
 
             while (true) {
-                mostrarMenu(); // Exibe o menu de opções
-                int opcao = scanner.nextInt(); // Lê a opção selecionada pelo usuário
+                mostrarMenu();
+                int opcao = scanner.nextInt();
                 if (opcao == 0) {
-                    break; // Sai do loop se o usuário selecionar 0
+                    break;
                 }
                 System.out.print("Digite o valor a ser convertido: ");
-                double valor = scanner.nextDouble(); // Lê o valor a ser convertido
+                double valor = scanner.nextDouble();
                 double resultado;
 
-                // Realiza a conversão com base na opção selecionada
                 switch (opcao) {
                     case 1:
                         resultado = conversor.converter(valor, taxas.get("USD").getAsDouble(), taxas.get("ARS").getAsDouble());
@@ -91,9 +84,8 @@ public class AppConversorMoedas {
                         System.out.println("Opção inválida.");
                 }
             }
-            scanner.close(); // Fecha o scanner
+            scanner.close();
         } catch (Exception e) {
-            // Captura e exibe qualquer exceção que ocorra durante a obtenção das taxas de câmbio
             System.out.println("Erro ao obter as taxas de câmbio: " + e.getMessage());
         }
     }
